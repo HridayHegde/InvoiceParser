@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
-import TabulaModule as TM
-import OCRModule as OCRM
+from CustomPackages import TabulaModule as TM
+from CustomPackages import OCRModule as OCRM
 import json
 import re
 
