@@ -1,0 +1,137 @@
+{
+    "invoices":[
+        
+        {   "name": "Signpost\\b",
+            "setting" :"Tabula",
+            "field":[
+            {
+                "datafieldname" : "Client:",
+                "position" : "r",
+                "FinalOutputField":"Client Name",
+                "NoofSkips": 0
+            },
+            {
+                "datafieldname" : "Estimate No",
+                "position" : "r",
+                "FinalOutputField":"Estimate No",
+                "NoofSkips": 0
+            },
+            {
+                "datafieldname" : "Grand  Total",
+                "position" : "rd",
+                "FinalOutputField":"Grand total",
+                "NoofSkips": 0
+            },
+            
+            {
+                
+                "datafieldname" : "Estimate Date",
+                "position" : "rd",
+                "FinalOutputField":"Estimate Date",
+                "NoofSkips": 0
+            },
+            {
+                
+                "datafieldname" : "Display and Mounting",
+                "position" : "r",
+                "FinalOutputField":"Display and Mounting",
+                "NoofSkips": 1
+            },
+            {
+                
+                "datafieldname" : "VAT/CST",
+                "position" : "r",
+                "FinalOutputField":"VAT/CST",
+                "NoofSkips": 1
+            },
+            {
+                
+                "datafieldname" : "Service Tax",
+                "position" : "r",
+                "FinalOutputField":"Service Tax",
+                "NoofSkips": 1
+            },
+            {
+                
+                "datafieldname" : "Krishi Kalyan Cess @  00.50 %",
+                "position" : "r",
+                "FinalOutputField":"Krishi Kalyan Cess",
+                "NoofSkips": 0
+            },
+            {
+                
+                "datafieldname" : "Swachh Bharat Cess @  00.50 %",
+                "position" : "ru",
+                "FinalOutputField":"Swatch Bharat cess",
+                "NoofSkips": 0
+            },
+            {
+                
+                "datafieldname" : "Other Charges",
+                "position" : "ru",
+                "FinalOutputField":"Other Charges",
+                "NoofSkips": 0
+            }
+            ]
+        },
+        {
+            "name":"FACIN",
+            "setting":"OCR",
+            "field":[
+                {
+                    "datafieldnameRegex" : "Invoice #: ",
+                    "FinalOutputField":"Invoice Number",
+                    "dataonlyRegex":"[0-9]+" 
+                },
+                {
+                    "datafieldnameRegex" : "Invoice Date: ",
+                    "FinalOutputField":"Invoice Date",
+                    "dataonlyRegex":"(\\d{2}-\\w{3}-\\d{4})"
+                }
+
+            ]
+            
+        },
+        {
+            "name":"GGLIP",
+            "setting":"OCR",
+            "field":[
+                {
+                    "datafieldnameRegex" : "Invoice number ........................ ",
+                    "FinalOutputField":"Invoice Number",
+                    "dataonlyRegex":"[0-9]+" 
+                },
+                {
+                    "datafieldnameRegex" : "Invoice date ................0.....0.0... ",
+                    "FinalOutputField":"Invoice Date",
+                    "dataonlyRegex":"(\\d{2} \\w{3} \\d{4})"
+                }
+            
+
+            ]
+            
+        }
+    ],
+
+    "INTRUCTIONS AND IMPORTANT NOTES":[{
+            
+        "Instructions": "The Invoice Name is a RegEx Expression that will match with the name of the file, Datafield name relates to the way the data field name is written in the converted csv, position tells where the data is situated compared to the datafield(skips blank spaces automatically), No of skips is to add support for whether the data is situated after another text object, FinalOutputfield tells us about the column the data should go to in the final output csv",
+        "IMPORTANT": "For python to understand regex expressions double backslash(\\) needs to be used in place of a single one !!!!!!SPACES ARE IMPORTANT AND ARE CONSIDERED IN THE REGEX",
+
+        "allowed position values":[
+            "r - right",
+            "d - down(Does not support skips or blank spaces)",
+            "rd - right and down",
+            "ru - right and up"
+        ],
+            
+        "Allowed Settings values":[
+            "Tabula - Uses String matching to find values and is built for missaligned CSV's too Works better with table like formats",
+            "OCR - Uses RegEx Matching(use RegEx expressions according to the IMPORTANT Note use spaces appropriately) to find values works with non tabular formats of Invoices (This Format may work with all files but can be messy with tabulated ones)"
+
+        ],
+        "OCRINSTRCUTIONS":"THE DATA FINDER Respects REGEX groups and will always print group 1 so always use parenthesis on the dataonly regex",
+        "REGEX INSTRUCTIONS":"REGEX is group sensitive and according to code will always print group 1 for the dataonlyregex value",
+        "MODE SETTING":"Only Required for OCR"
+    }]
+}

@@ -1,0 +1,8 @@
+tabula-py
+pyzbar
+pymupdf
+pillow
+zxing
+pandas
+pdf2image
+pytesseract
