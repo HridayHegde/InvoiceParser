@@ -15,7 +15,7 @@ import csv
 import re
 
 def GenerateCSV(f):
-    print("Generating CSV....")
+    print("....Generating CSV....")
     df = tabula.read_pdf(f,stream=True,pandas_options={'header': None})
 
     df = df[0]
@@ -24,7 +24,7 @@ def GenerateCSV(f):
     return df
 
 def ParseQRCode(pdfpath):
-    print("Parsing QR Code by image extraction....")
+    print("....Parsing QR Code by image extraction....")
     file_set1 = []
     barcodeexists = False
     for file in os.listdir("./COnvertedInvoices/"+Path(pdfpath).stem+"/temp"):
@@ -35,7 +35,7 @@ def ParseQRCode(pdfpath):
         
         reader = zxing.BarCodeReader()
         barcode = reader.decode(f)
-        print(barcode.raw)
+        #print(barcode.raw)
       
         print("QR Data : "+barcode.raw)
         if barcode:
@@ -51,7 +51,7 @@ def ParseQRCode(pdfpath):
 
 
 def ExtractImages(filename):
-    print("Extracting Images.....")
+    print("....Extracting Images.....")
     
     doc = fitz.open(filename)
     for i in range(len(doc)):
@@ -67,11 +67,11 @@ def ExtractImages(filename):
             pix = None
 
 def parseReqDataTabula(filepath,pathtocsv,barcodedata,dataframe,reqfieldsfile = "requiredFields.json"):#Parses and writes the CSV according to JSON Settings
-    print("Parsing Tabula Data......")
+    print(".....Parsing Tabula Data......")
     
     writedict = {}
 
-    print("PARSING DATAFRAME")
+    print("....PARSING DATAFRAME....")
     df = dataframe
     f = open(reqfieldsfile) 
     data = json.load(f)
@@ -93,7 +93,6 @@ def parseReqDataTabula(filepath,pathtocsv,barcodedata,dataframe,reqfieldsfile = 
     writedict["PDF Name"] = str(Path(filepath).stem)
 
     for freg in data['invoices']:
-        print('ITTTTTTETETET ::: '+freg['name'])
         if re.compile(freg['name']).search(Path(filepath).stem):
             for i in freg['field']:
                 name = i['datafieldname']
