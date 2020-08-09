@@ -5,6 +5,8 @@ from pathlib import Path
 import fitz
 import zxing
 
+import pyzbar
+#import qrtools.qrtools as rqr
 import io
 from PIL import Image
 
@@ -23,31 +25,46 @@ def GenerateCSV(f):
     df.to_csv(('./ConvertedInvoices/'+Path(f).stem+'/'+Path(f).stem+'.csv'), encoding='utf-8')
     return df
 
+def GenerateCSVTemplate(f):
+    print("....Generating TEMPLATE CSV....")
+    df = tabula.read_pdf(f,stream=True,pandas_options={'header': None})
+
+    df = df[0]
+                
+    df.to_csv(('./TemplateGenerator/Output/'+Path(f).stem+'.csv'), encoding='utf-8')
+    return df
 def ParseQRCode(pdfpath):
     print("....Parsing QR Code by image extraction....")
     file_set1 = []
     barcodeexists = False
-    for file in os.listdir("./COnvertedInvoices/"+Path(pdfpath).stem+"/temp"):
-        file_set1.append(os.path.join("./COnvertedInvoices/"+Path(pdfpath).stem+"/temp", file))
+    for file in os.listdir("./ConvertedInvoices/"+Path(pdfpath).stem+"/temp"):
+        file_set1.append(os.path.join("./ConvertedInvoices/"+Path(pdfpath).stem+"/temp", file))
 
     for f in file_set1:
         print(f)
         
+        
+        #qrreader = rqr.QR()
+        #qrreader.decode(f)
         reader = zxing.BarCodeReader()
-        barcode = reader.decode(f)
+        barcode = reader.decode(f) #qrreader.data#
         #print(barcode.raw)
       
-        print("QR Data : "+barcode.raw)
-        if barcode:
+        #print("QR Data : "+barcode.raw)
+        
+        if barcode is not None:
             barcodeexists = True
             file_object = open('./ConvertedInvoices/'+Path(pdfpath).stem+'/qrdata.txt', 'a')
             file_object.write(barcode.raw)
             file_object.close()
 
     if barcodeexists:
-        return barcode.raw
+        try:
+            return barcode.raw
+        except:
+            return ""
     else:
-        return "0"
+        return ""
 
 
 def ExtractImages(filename):
@@ -81,10 +98,13 @@ def parseReqDataTabula(filepath,pathtocsv,barcodedata,dataframe,reqfieldsfile = 
             for y in x['field']:
                 if y:
                     fieldnames.append(y['FinalOutputField'])
-    fieldnames.append('QR Code')
+    fieldnames.append('Irn Number')
     #region CSV Setup
-    fileexists = os.path.isfile("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
-    csv_file = open("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
+    #fileexists = os.path.isfile("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
+    #csv_file = open("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
+
+    fileexists = os.path.isfile("./FinalOutputs/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
+    csv_file = open("./FinalOutputs/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
     
     writer = csv.DictWriter(csv_file,fieldnames)
     if not fileexists:
@@ -172,7 +192,7 @@ def parseReqDataTabula(filepath,pathtocsv,barcodedata,dataframe,reqfieldsfile = 
                     print("Position not specified")
             #writer.writerow({'fields':'QRCode','data':barcode_data})
             
-            writedict['QR Code'] = barcodedata
+            writedict['Irn Number'] = barcodedata
 
 
     print(writedict)
@@ -181,4 +201,5 @@ def parseReqDataTabula(filepath,pathtocsv,barcodedata,dataframe,reqfieldsfile = 
     else:
         print("Error no template for file in requiredFields.json")
     csv_file.close()
-    
+
+
