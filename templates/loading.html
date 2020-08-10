@@ -10,7 +10,31 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="static/css/Login-Form-blue-Gradient-1.css">
+    <link rel="stylesheet" href="static/css/Login-Form-blue-Gradient.css">
+    <link rel="stylesheet" href="static/css/OcOrato---Login-form-1.css">
+    <link rel="stylesheet" href="static/css/OcOrato---Login-form.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        var refresh_id = setInterval(function() {
+            $.get(
+              "{{ url_for('upload_thread_status') }}",
+              function(data) {
+                console.log(data);
+                if (data.status == 'finished') {
+                  window.location.replace("{{ url_for('result',files=filenames,head=heading) }}");
+                }
+              }
+            )}
+          , 1000);
+      });
+    </script>
+
 </head>
 
 <body id="page-top">
@@ -19,53 +43,39 @@
                 aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="nav navbar-nav ml-auto text-uppercase">
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="/">Home</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="/#services">Template Generator</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="/#json">Json Handling</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="/#about">About</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#team">Team</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <header class="masthead" style="background-image: url(&quot;static/img/bg.png&quot;);background-size: cover;background-repeat: no-repeat;">
+    <header class="masthead" style="background-image:url('static/img/header-bg.jpg');">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in"><span>{{heading}}</span></div>
-                <div class="intro-heading text-uppercase"><span style="font-size: 43px;"></span></div>
-                {% for file in filenames %}
-                        <div class="form-row justify-content-center">
-                            <div class="col"><a href="{{url_for('uploaded_file', filename=file,x=x)}}" style="font-size: 27px;">{{file}}</a></div>
-                        </div>
-                {% endfor %}
-                <div class="form-row justify-content-center">
-                        
-                </div>
-                
+                <div class="intro-heading text-uppercase"><span>Loading.......</span></div>
             </div>
         </div>
     </header>
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-md-4"></div>
+                <div class="col-md-4"><span class="copyright">Copyright&nbsp;© InvoiceParser 2018</span></div>
                 <div class="col-md-4">
                     <ul class="list-inline social-buttons">
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-github"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-github"></i></a></li>
-                        <li class="list-inline-item"><a href="#"><i class="fa fa-github"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <ul class="list-inline quicklinks">
-                        <li class="list-inline-item"><a href="#">:D</a></li>
-                        <li class="list-inline-item"><a href="#">:D</a></li>
+                        <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#">Terms of Use</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4"><span class="copyright">&nbsp;2020</span></div>
-                <div class="col-md-4"></div>
             </div>
         </div>
     </footer>

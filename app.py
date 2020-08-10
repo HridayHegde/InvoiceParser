@@ -1,8 +1,8 @@
 import os
 
-from flask import Flask, render_template, request, redirect, url_for, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, send_from_directory,jsonify
 from werkzeug.utils import secure_filename
-
+from threading import Thread
 from pathlib import Path
 
 import json
@@ -12,6 +12,8 @@ import shutil
 
 # Initialize the Flask application
 app = Flask(__name__)
+th = Thread()
+finished = False
 
 MYDIR = os.path.dirname(__file__)
 # This is the path to the upload directory
@@ -55,7 +57,10 @@ def index():
 def upload():
     # Get the name of the uploaded files
     uploaded_files = request.files.getlist("file[]")
-    
+    filenames = []
+    global th
+    global finished
+    print("IM here")
     filenames = []
     for file in uploaded_files:
         # Check if the file is one of the allowed types/extensions
@@ -66,10 +71,11 @@ def upload():
             filename = secure_filename(Path(filename).stem)
             z = filename
             filename = filename+file_extension
-
+            
             
             # Move the file form the temporal folder to the upload
             # folder we setup
+           
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # Save the filename into a list, we'll use it later
             
@@ -80,10 +86,40 @@ def upload():
             # Redirect the user to the uploaded_file route, which
             # will basicaly show on the browser the uploaded file
     # Load an html page with a link to each uploaded file
+    th = Thread(target=upload_async, args=())
+    print(th)
+    th.start()
+    
     filenames.append("output_zip.zip")
-    InDe.main()
+    
     head = "Zipped Output"
-    return render_template('upload_main.html', filenames=filenames,heading=head)
+    return render_template('loading.html', filenames=filenames,heading=head)
+
+@app.route('/status')
+def upload_thread_status():
+    print( "Return the status of the worker thread")
+    print(finished)
+    return jsonify(dict(status=('finished' if finished else 'running')))
+
+
+def upload_async():
+    print(" The worker function ")
+    global finished
+    
+    InDe.main()
+    
+    finished = True
+
+@app.route('/result')
+def result():
+    """ Just give back the result of your heavy work """
+    filenames = []
+    filenames.append("output_zip.zip")
+    
+    
+
+    return render_template('upload_main.html', filenames=filenames,heading="Zipped Output")
+
 
 @app.route('/uploadjson', methods=['POST'])
 def uploadmain():
@@ -159,10 +195,10 @@ def templategen():
 
 if __name__ == '__main__':
     app.run(
-        #host="127.0.0.1",
-        #port=int("80"),
-        #debug=True
-        threaded=True,
-        port=5000,
-        debug=False
+        host="127.0.0.1",
+        port=int("80"),
+        debug=True
+        #threaded=True,
+        #port=5000,
+        #debug=False
     )
