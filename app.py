@@ -12,6 +12,7 @@ import shutil
 
 # Initialize the Flask application
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 th = Thread()
 finished = False
 
@@ -37,6 +38,8 @@ def allowed_file(filename):
 # value of the operation
 @app.route('/')
 def index():
+    global finished
+    finished = False 
     try:
         os.mkdir("PDFInvoices")
     except OSError as e:
@@ -46,9 +49,22 @@ def index():
     except OSError as e:
         print(e)
     try:
+        shutil.rmtree("ConvertedInvoices")
+    except OSError as e:
+        print(e)
+    try:
         os.mkdir("ConvertedInvoices")
     except OSError as e:
         print(e)
+    try:
+        shutil.rmtree("ZipOutput")
+    except OSError as e:
+        print(e)
+    try:
+        os.mkdir("ZipOutput")
+    except OSError as e:
+        print(e)
+
     return render_template('index.html')
 
 
@@ -106,9 +122,9 @@ def upload_async():
     print(" The worker function ")
     global finished
     
-    InDe.main()
+    status = InDe.main()
     
-    finished = True
+    finished = status
 
 @app.route('/result')
 def result():
@@ -116,7 +132,7 @@ def result():
     filenames = []
     filenames.append("output_zip.zip")
     
-    
+    finished = False
 
     return render_template('upload_main.html', filenames=filenames,heading="Zipped Output")
 
@@ -132,7 +148,7 @@ def uploadmain():
         print("File Doesnt Exist")
 
     uploaded_files[0].save("./requiredFields.json")
-    
+    print("JSON UPLOADED")
     return render_template('index.html',scroll='json')
 
 # This route is expecting a parameter containing the name
@@ -195,10 +211,10 @@ def templategen():
 
 if __name__ == '__main__':
     app.run(
-        host="127.0.0.1",
-        port=int("80"),
-        debug=True
-        #threaded=True,
-        #port=5000,
-        #debug=False
+        #host="127.0.0.1",
+        #port=int("80"),
+        #debug=True
+        threaded=True,
+        port=5000,
+        debug=False
     )

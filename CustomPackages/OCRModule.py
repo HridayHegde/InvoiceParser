@@ -15,10 +15,11 @@ import fitz
 import pdf2image
 from PIL import Image
 import time
+from copy import deepcopy
 
-
+from CustomPackages import DatabaseInteraction as DI
 #IMAGE GENERATION VARIABLES
-DPI = 300
+DPI = 400
 OUTPUT_FOLDER = None
 FIRST_PAGE = None
 LAST_PAGE = None
@@ -85,10 +86,11 @@ def GenerateOCRTemplate(file):
     except OSError as e:
         print(e)
 
-def ParseOCR(filepath,text,barcodedata = "NULL",reqfieldsfile = "requiredFields.json"):
+def ParseOCR(datetime,filepath,text,barcodedata = {},reqfieldsfile = "requiredFields.json"):
     print("....Parsing OCR.....")
 
     writedict = {}
+    qrdatalist = []
 
     f = open(reqfieldsfile) 
     data = json.load(f)
@@ -98,19 +100,25 @@ def ParseOCR(filepath,text,barcodedata = "NULL",reqfieldsfile = "requiredFields.
             for y in x['field']:
                 if y:
                     fieldnames.append(y['FinalOutputField'])
-    fieldnames.append('Irn Number')
+    for x in data['invoices']:
+        if re.compile(x['name']).search(Path(filepath).stem):
+            if 'qrdata' in x:
+                for y in x['qrdata']:
+                    if y:
+                        fieldnames.append(y["visualname"])
+
     #region CSV Setup
     #fileexists = os.path.isfile("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
     #csv_file = open("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
 
-    fileexists = os.path.isfile("./FinalOutputs/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
-    csv_file = open("./FinalOutputs/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
+    fileexists = os.path.isfile("./FinalOutputs/"+datetime+"_DATA.csv")
+    csv_file = open("./FinalOutputs/"+datetime+"_DATA.csv",mode='a')
 
     writer = csv.DictWriter(csv_file,fieldnames)
     if not fileexists:
         writer.writeheader()
     #region end CSV SETUP
-    writedict["PDF Name"] = str(Path(filepath).stem)
+    writedict["PDF Name"] = str(Path(filepath).stem)+".PDF"
 
     for freg in data['invoices']:
         if re.compile(freg['name']).search(Path(filepath).stem):
@@ -126,18 +134,34 @@ def ParseOCR(filepath,text,barcodedata = "NULL",reqfieldsfile = "requiredFields.
                     print(match.group(0))
                 
                     actualdata = re.search(dataonlyregex,match.group(0))  
-                    if actualdata:
-                        print(actualdata.group(0)) 
-                        print("Extracted INFO ::::: "+match.group(0)+":::::: Data :::::: "+actualdata.group(0))
-                    else:
-                        actualdata = "Not Found"
-                        
-                    writedict[finaloutputfield] = actualdata.group(0)
-                else:
-                    writedict[finaloutputfield] = "Not Found"
+                    if  'removefirstchar' in fs:
+                        if fs['removefirstchar'] == '1':
+                            print("ACTUAL DATA :::: ")
+                            x = actualdata.group(0)
+                            print(x)
+                            tempdata = deepcopy(x)
+                            print(tempdata)
+                            tempdata = list(tempdata)
+                            tempdata.remove(tempdata[0])
+                            actualdata = "".join(tempdata)
 
-    writedict['Irn Number'] = barcodedata
+                    if 'removefirstchar' not in fs:    
+                        if actualdata:
+                            print(actualdata.group(0)) 
+                            print("Extracted INFO ::::: "+match.group(0)+":::::: Data :::::: "+actualdata.group(0))
+                            writedict[finaloutputfield] = actualdata.group(0)
+                        else:
+                            actualdata = "Not Found"
+                    else:
+                        writedict[finaloutputfield] = actualdata
+                        
+                else:
+                    writedict[finaloutputfield] = dataonlyregex
+
+    #writedict['Irn Number'] = barcodedata
+    writedict.update(barcodedata)
     if not not writedict:
+        DI.commitToDB(writedict)
         writer.writerow(writedict)
     else:
         print("Error no template for file in requiredFields.json")
@@ -178,4 +202,4 @@ def ParseOCR_QRcode(file):
     if barcodeexists:
         return barcode_data
     else:
-        return "0"
+        return ""

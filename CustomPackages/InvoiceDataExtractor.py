@@ -10,6 +10,8 @@ from CustomPackages import jwtdecoding as jwtD
 import json
 import re
 
+from datetime import datetime
+
 import shutil
 
 
@@ -21,7 +23,11 @@ def clearoutputs():
     for file in os.listdir("./FinalOutputs"):
         os.remove("./FinalOutputs/"+file)
 def main():
+    print("STARTING MAIN ::::  ")
     #region Main
+    now = datetime.now()
+    dt_string = now.strftime("%d-%m-%Y_%H-%M-%S")
+
     file_set = []
     for file in os.listdir(originfolder):
         if file.endswith(".pdf") or file.endswith(".PDF"):
@@ -50,32 +56,35 @@ def main():
                     print("--------Tabula Method------")
                     
                     TM.ExtractImages(f)#ExtractImages from PDF
-
+                    irnnumber = ""
                     barcode_data = TM.ParseQRCode(f)#Scan For QRCOde and output to file
-                    if barcode_data == "":
-                        irnnumber = jwtD.jwtdecode(barcode_data)
+                    print("BARCODE DATA :::::: "+str(barcode_data)+" :::::")
+                    if barcode_data != "":
+                        qrextracteddata = jwtD.jwtdecode(barcode_data,"requiredFields.json",f)
                     else:
-                        irnnumber = ""
+                        qrextracteddata = {}
                     print("Irn NUMBER    : :: :  "+str(irnnumber))
-                    irnnumber = jwtD.jwtdecode(barcode_data)
+                    #irnnumber = jwtD.jwtdecode(barcode_data)
                     print("Irn NUMBER    : :: :  "+str(irnnumber))
                     df = TM.GenerateCSV(f)
                     
 
-                    TM.parseReqDataTabula(f,destfolder+Path(f).stem+'/'+Path(f).stem+'.csv',irnnumber,df)
+                    TM.parseReqDataTabula(dt_string,f,destfolder+Path(f).stem+'/'+Path(f).stem+'.csv',qrextracteddata,df)
                 elif freg['setting'] == "OCR":
                     print("-------OCR Method------")
                     ocrtext = OCRM.GenerateOCR(f)
-
+                    irnnumber = ""
                     qrdata =OCRM.ParseOCR_QRcode(f)
-                    if qrdata == "":
-                        irnnumber = jwtD.jwtdecode(qrdata)
+                    print("BARCODE DATA :::::: "+str(qrdata)+" :::::")
+                    if qrdata != "":
+                        qrextracteddata = jwtD.jwtdecode(qrdata,"requiredFields.json",f)
                     else:
-                        irnnumber = ""
+                        qrextracteddata = {}
                     print("Irn NUMBER    : :: :  "+str(irnnumber))
                     
-                    OCRM.ParseOCR(f,ocrtext,barcodedata=irnnumber)
+                    OCRM.ParseOCR(dt_string,f,ocrtext,barcodedata=qrextracteddata)
         os.remove(f)
+    
 
     shutil.make_archive("./ZipOutput/output_zip", 'zip', "./FinalOutputs/")
     try:
@@ -95,8 +104,15 @@ def main():
     except OSError as e:
         print(e)
     clearoutputs()
-    shutil.rmtree("./ConvertedInvoices")
-    os.mkdir("./ConvertedInvoices")
-
+    try:
+        shutil.rmtree("./ConvertedInvoices")
+    except OSError as e:
+        print(e)
+    try:
+        os.mkdir("./ConvertedInvoices")
+    except OSError as e:
+        print(e)
+    
+    return True
     #region end Main
-#main()
+
