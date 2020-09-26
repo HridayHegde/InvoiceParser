@@ -60,7 +60,7 @@ def main():
                     barcode_data = TM.ParseQRCode(f)#Scan For QRCOde and output to file
                     print("BARCODE DATA :::::: "+str(barcode_data)+" :::::")
                     if barcode_data != "":
-                        qrextracteddata = jwtD.jwtdecode(barcode_data,"requiredFields.json",f)
+                        qrextracteddata = jwtD.jwtdecode(barcode_data,requiredfile,f)
                     else:
                         qrextracteddata = {}
                     print("Irn NUMBER    : :: :  "+str(irnnumber))
@@ -77,7 +77,7 @@ def main():
                     qrdata =OCRM.ParseOCR_QRcode(f)
                     print("BARCODE DATA :::::: "+str(qrdata)+" :::::")
                     if qrdata != "":
-                        qrextracteddata = jwtD.jwtdecode(qrdata,"requiredFields.json",f)
+                        qrextracteddata = jwtD.jwtdecode(qrdata,requiredfile,f)
                     else:
                         qrextracteddata = {}
                     print("Irn NUMBER    : :: :  "+str(irnnumber))
@@ -88,7 +88,7 @@ def main():
 
     shutil.make_archive("./ZipOutput/output_zip", 'zip', "./FinalOutputs/")
     try:
-        shutil.rmtree("./PDFInvoices")
+        shutil.rmtree(originfolder)
     except OSError as e:
         print(e)
     try:
@@ -100,16 +100,16 @@ def main():
     except OSError as e:
         print(e)
     try:
-        os.mkdir("./PDFInvoices")
+        os.mkdir(originfolder)
     except OSError as e:
         print(e)
     clearoutputs()
     try:
-        shutil.rmtree("./ConvertedInvoices")
+        shutil.rmtree(destfolder)
     except OSError as e:
         print(e)
     try:
-        os.mkdir("./ConvertedInvoices")
+        os.mkdir(destfolder)
     except OSError as e:
         print(e)
     
