@@ -1,0 +1,310 @@
+
+amazonadvertising
+p e
+
+FROM TO
+Amazon Seller Services Private Interactive Avenues Pvt. Ltd.
+Limited
+
+3rd Floor, Chhiber House, M
+
+8th Floor, Brigade Gateway, World Vasaniji Road
+
+Trade Center,
+
+No 26/1, Dr Raj Kumar Road, Near Sakinaka Metro Station,
+Malleshwaram (W), Bangalore Andheri East
+Karnataka - 560055, India MUMBAI, Maharashtra - 400072 GST INVOICE
+CIN: U51900KA2010PTCO53234 , IN
+PAN No.: AAICA3918J PAN No.: AACCI0954J
+GST Number: 29AAICA3918J1ZE GST Number: Total Amount (tax included) . INR 326, 656.04
+State Code: 29 27AACCIO954J1Z1 Due 05-12-2020
+SAC: 998365 State Code: 27
+Place of Supply: Maharashtra Invoice Number: 21915100154613
+
+RO Number: MUM/2020-21/MCERI/RO-002879
+
+IRN:: 44878424d40a8d871589fec5ed4bf57c4eb55c2
+6db950e44573efb22201cec6e5
+
+Invoice Date: 06-10-2020
+
+Invoice Period: 01-09-2020 to 30-09-2020
+
+Invoice Currency: INR
+
+Payment Type: Invoice
+
+Payment Terms: Net 60
+
+ 
+
+Summary of Portfolio Charges
+
+Portfolio subtotals include advertising charges and adjustments. Tax is calculated on the overall invoice and therefore not reflected in the portfolio subtotal.
+
+Portfolio name Amount
+Target-ASIN/Sub-Cat 2,551.05 INR
+Target-Brand 107,110.98 INR
+Target-Category 165,442.36 INR
+Target-Competitor 1,722.76 INR
+Other Charges and Adjustments 0.00 INR
+
+Total Amount 276,827.15 INR
+
+Portfolio name: Target-ASIN/Sub-Cat
+
+Campaign Charges
+
+Campaign Campaign Type Destination Clicks Average CPC Amount (ex. IGST)
+
+FP_ 2019 _Q3_SPA_ Rockers _ ASIN
+Category
+Targeted_Sept'19#kdhfxOO0k873
+
+FP_2020_Q1_SPA_Gym_ASIN
+Category
+Targeted_Sept'19#kdhfx3bc045
+
+Portfolio name: Target-Brand
+
+Campaign Charges
+
+Campaign
+
+FP_2020_Q1_SPA_Gym_Brand
+KW_Feb'20#kdhfx3bc944
+
+FP_2019_Q3_SPA _ High_Brand
+KW_Sept'19#kdhfwzq6668
+
+FP_2020_Q1_SPA_Toy_Brand
+KW_Feb'20#kdhfw2zq6929
+
+FP_2019_Q3_SPA_Gym_Brand
+KW_Sept'19#kdhfwzq6110
+
+FP 2020 _Q2_Toy_Brand
+KW_FPA4_SBA_May'20
+
+FP_ 2019 _Q3_SPA_ Low_Brand
+KW_Sept'19#kdhfw2zq6912
+
+FP_2020_Q3_Mixed_Brand
+KW_FP10_SBA_Aug'20
+
+FP_2020_Q2_Mixed_Brand
+KW_FP7_SBA_Jun'20
+
+FP_2020_Q1_SPA_ Rocker_Brand
+KW_Feb'20#kdhfx0O0k170
+
+FP _2020_Q1_Rockers_Brand
+KW_FP1_SBA_Nov19
+
+FP_2019_Q3_SPA_ Rockers_Brand
+KW_Sept'19#kdhfwzq6401
+
+Portfolio name: Target-Category
+
+Campaign Charges
+
+Campaign
+
+FP _2020_Q2_Mixed_Category
+KW_FP7_SBA_Jun'20
+
+FP _2020_Q2_Toy_ Category
+KW_FPA4_SBA_May'20
+
+FP_2019_Q3_SPA_ High Category
+
+SPONSORED PRODUCTS
+
+SPONSORED PRODUCTS
+
+Campaign Type
+
+SPONSORED PRODUCTS
+
+SPONSORED PRODUCTS
+
+SPONSORED PRODUCTS
+
+SPONSORED PRODUCTS
+
+SPONSORED BRANDS
+
+SPONSORED PRODUCTS
+
+SPONSORED BRANDS
+
+SPONSORED BRANDS
+
+SPONSORED PRODUCTS
+
+SPONSORED BRANDS
+
+SPONSORED PRODUCTS
+
+Campaign Type
+
+SPONSORED BRANDS
+
+SPONSORED BRANDS
+
+amazon.in
+
+amazon.in
+
+Destination
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+amazon.in
+
+Destination
+
+amazon.in
+
+amazon.in
+
+725 2.73 INR 1,977.41 INR
+
+182 3.15 INR 573.64 INR
+
+Campaign Charges total: 2,551.05 INR
+Portfolio total 2,551.05 INR
+
+Clicks Average CPC Amount (ex. IGST)
+33 1.61 INR 53.11 INR
+
+13 3.16 INR 41.10 INR
+3915 2.67 INR 10,456.46 INR
+3 1.60 INR 4.79 INR
+1547 3.08 INR 4,765.24 INR
+472 3.66 INR 1,728.64 INR
+102 2.21 INR 225.65 INR
+11456 6.37 INR 72,951.98 INR
+85 1.69 INR 143.99 INR
+2606 4.36 INR 11,357.79 INR
+945 5.70 INR 5,382.23 INR
+
+Campaign Charges total: 107,110.98 INR
+Portfolio total 107,110.98 INR
+
+Clicks Average CPC Amount (ex. IGST)
+48805 1.38 INR 67,454.33 INR
+2532 1.42 INR 3,599.58 INR
+KW_Sept'19#kdhfwzq6499 SPONSORED PRODUCTS amazon.in 23 7.05 INR 162.25 INR
+
+FP _2020_Q3_Mixed_Category
+
+KW EP10 86A Aug20 SPONSORED BRANDS amazon.in _| 747 __| 2.44 INR 1,824.40 INR
+Egg;Eggziml'fszg--zfitegow SPONSORED PRODUCTS | amazon.in _| 21 5.54 INR 116.39 INR
+PS5ng ;SS;%iimeqogePSategdegry SPONSORED PRODUCTS | amazon.in _| 1792 | 3.06 INR 5,485.24 INR
+if? GZSESlejhifagee--f ategory SPONSORED PRODUCTS | amazon.in | 9132 | 2.43 INR 22,199.87 INR
+ECchEsfeifizifirg'category SPONSORED BRANDS amazon.in _| 12484 | 3.79 INR 47,337.34 INR
+PS3,110 62853;ESSh|3;$;:gSSSS;er_Category SPONSORED PRODUCTS | amazon.in | 235 _| 4.60 INR 1,079.89 INR
+Pia/12g staggihifacig?"category SPONSORED PRODUCTS | amazon.in | 303 3.85 INR 1,166.43 INR
+my? jgggijhifaifggcategow SPONSORED PRODUCTS | amazon.in _| 119 __| 2.89 INR 343.57 INR
+
+| spongoRED PRODUCTS | amazon.in _| 3028 _| 4.85 INR 14,673.07 INR
+
+y KW_Sept'19#kdhfwzg6867
+
+Campaign Charges total: 165,442.36 INR
+
+Portfolio name: Target-Competitor Portiolic tola! 165.442.30 INF
+
+Campaign Charges
+
+Campaign Campaign Type Destination Clicks Average CPC Amount (ex. IGST)
+
+FP_2020_Q1_SPA_Rocker_Competit
+
+or KW_Mar'20#kdhfxO0k853 SPONSORED PRODUCTS amazon.in 159 10.83 INR 1,722.76 INR
+
+Campaign Charges total: 1,722.76 INR
+
+Other Charges and Adjustments Portfolio total 1,722.76 INR
+
+Adjustments
+Date Comment Amount (ex. IGST)
+30-09-2020 Free advertising credits for 20 to 25 March 2020 0.00 INR
+
+Adjustments total: 0.00 INR
+Other Charges and Adjustments total 0.00 INR
+
+Total Amount Billed 276,827.15 INR
+
+Total Adjustments 0.00 INR
+
+IGST Rate 18.00%
+
+IGST Amount 49,828.89 INR
+' Total Amount (IGST inclusive) ' 326,656.04 INR |
+
+Total Tax Amount in Words: Indian Rupee forty-nine thousand eight hundred twenty-eight point eight nine
+Total Amount in Words: Indian Rupee three hundred twenty-six thousand six hundred fifty-six point zero four
+
+PAYMENT METHOD: PAYMENT IS DUE FOR THIS DOCUMENT.
+
+Payment Methods: Cheque details: In the name of: Amazon Seller Services Private Limited Address: Global Accounts Receivable
+
+C/o Amazon Development Centre (India) Private Limited - Telangana SEZ. SEZ Unit in TSIIC Limited, IT/ITES SEZ, Plot No.12/P,
+
+13, 14 and 15/P, Sy. No.115Part, Nanakramguda Village, Serilingampally Mandal, Ranga Reddy District Hyderabad, Telangana -
+
+500032 India Tel - 040-43451000 Wire: Beneficiary Name: Amazon Seller Services Private Limited Bank Name: Deutsche Bank
+Account Number: 2049583000 IFSC Code: DEUTO797BGL Swift Code: DEUTINBBBGL
+
+ 
+
+Kindly send TDS certificate to our e-mail id asspl-in@amazon.com
+Should you have any queries, please e-mail Accounts Receivable at asspl-in@amazon.com
+
+This is a digitally signed document and does not require physical signature. To add the certificate as a trusted
+certificate, please follow these instructions:
+
+1. Click on the 'Signature Panel' in the upper right corner.
+
+2. Make sure that the certificate "Certified by ams-support@amazon.com" displayed in the newly opened Signatures Panel is
+selected. Click the button on the left side of "Validate All" and select 'Show Signature Properties...' from the Signatures Panel.
+3. Click on 'Show Signer's Certificate...'. In the Certificate Viewer box click on the "Trust' tab, click 'Add To Trusted Certificates
+and then click OK.
+
+4. In the Import Contact Settings box, ensure that 'Use this certificate as a trusted root' is selected, click OK, click OK again and
+close.
+
+5. Re-open pdf document. Check that the "Certified by ams-support@amazon.com, ..." is displayed on the top.
+
+6. To verify the certificate details, click 'Signature Panel' in the upper right corner. In the Signatures Panel expand "Certified by
+ams-support@amazon.com", expand "Signature details" and then click on "Certificate Details..." to view the validated digital
+certificate.
+
+Note: These steps listed are for Adobe Acrobat Professional version 2018.009 and might vary for other versions of Adobe
+Acrobat.
+
+Amazon Seller Services Private Limited
+8th Floor, Brigade GateWay, World Trade Center, No 26/1, Dr Raj Kumar Road, Malleshwaram(W), Bangalore, Karnataka -
+560055, India
+GST Number: 29AAICA3918J1ZE

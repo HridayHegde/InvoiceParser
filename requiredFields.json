@@ -161,6 +161,40 @@
                     "datafieldnameRegex" : "Other Charges",
                     "FinalOutputField":"Other Charges",
                     "dataonlyRegex":"0"
+                },
+				{
+					"datafieldnameRegex" : "RO Number: ",
+                    "FinalOutputField":"RO Number",
+                    "dataonlyRegex":"Null"
+				
+				}
+
+            ],
+            "qrdata":[
+                {
+                    "visualname" : "Total Invoice Value",
+                    "qrname" : "TotInvVal"
+                },
+                {
+                    "visualname" : "Irn Number",
+                    "qrname" : "Irn"
+                },
+                {
+                    "visualname" : "Seller GST Number",
+                    "qrname" : "SellerGstin"
+                },
+                {
+                    "visualname" : "Buyer GST Number",
+                    "qrname" : "BuyerGstin"
+                },
+                {
+                    "visualname":"QR DOC Number",
+                    "qrname":"DocNo"
+                },
+                {
+                    "visualname":"QR DOC Date",
+                    "qrname":"DocDt"
+
                 }
 
             ]
@@ -177,17 +211,17 @@
                     
                 },
                 {
-                    "datafieldnameRegex" : "Invoice number ........................ ",
+                    "datafieldnameRegex" : "Invoice number .............222222222222.",
                     "FinalOutputField":"Document No",
-                    "dataonlyRegex":"[0-9]+" 
+                    "dataonlyRegex":" [0-9]+" 
                 },
                 {
-                    "datafieldnameRegex":"Total amount due in INR [!@#$%^&¥*(),.?\":{}|<>|\\s|/d]",
+                    "datafieldnameRegex":"Total amount due in INR [!@#$%^&¥*(),.?\":{}|<>|\\s|/d]+",
                     "FinalOutputField":"Grand Total",
                     "dataonlyRegex":"[0-9,.]+"
                 },
                 {
-                    "datafieldnameRegex" : "Invoice date ............................ ",
+                    "datafieldnameRegex" : "Invoice date . ",
                     "FinalOutputField":"Doc date",
                     "dataonlyRegex":"(\\d{2} \\w{3} \\d{4})"
                 },
@@ -197,7 +231,7 @@
                     "dataonlyRegex":"0"
                 },
                 {
-                    "datafieldnameRegex" : "Integrated GST \\(18%\\) [!@#$%^&*(),.?\":{}|<>|\\s|/d]",
+                    "datafieldnameRegex" : "Integrated GST \\(18%\\) [!@#$%^&¥*(),.?\":{}|<>|\\s|/d]",
                     "FinalOutputField":"GST",
                     "dataonlyRegex":"[0-9]+,[0-9]+.[0-9]+"
                     
@@ -224,14 +258,149 @@
                     "datafieldnameRegex" : "Other Charges",
                     "FinalOutputField":"Other Charges",
                     "dataonlyRegex":"0"
-                }
+                },
+				{
+					"datafieldnameRegex" : "RO Number: ",
+                    "FinalOutputField":"RO Number",
+                    "dataonlyRegex":"Null"
+				
+				}
 
 
             
+
+            ],
+            "qrdata":[
+                {
+                    "visualname" : "Total Invoice Value",
+                    "qrname" : "TotInvVal"
+                },
+                {
+                    "visualname" : "Irn Number",
+                    "qrname" : "Irn"
+                },
+                {
+                    "visualname" : "Seller GST Number",
+                    "qrname" : "SellerGstin"
+                },
+                {
+                    "visualname" : "Buyer GST Number",
+                    "qrname" : "BuyerGstin"
+                },
+                {
+                    "visualname":"QR DOC Number",
+                    "qrname":"DocNo"
+                },
+                {
+                    "visualname":"QR DOC Date",
+                    "qrname":"DocDt"
+
+                }
+
+            ]
+            
+        },
+		{
+            "name":"HM",
+            "setting":"OCR",
+            "field":[
+                {
+                    "datafieldnameRegex" :"Amazon Seller Services Private Limited",
+                    "FinalOutputField":"Name",
+                    "dataonlyRegex":"[A-Za-z ]+"
+                    
+                },
+                {
+                    "datafieldnameRegex" : "Invoice Number: ",
+                    "FinalOutputField":"Document No",
+                    "dataonlyRegex":"[0-9]+" 
+                },
+                {
+                    "datafieldnameRegex":"Total Amount \\(tax included\\) . INR ",
+                    "FinalOutputField":"Grand Total",
+                    "dataonlyRegex":"[0-9]+, [0-9]+.[0-9]+"
+                },
+                {
+                    "datafieldnameRegex" : "Invoice Date: ",
+                    "FinalOutputField":"Doc date",
+                    "dataonlyRegex":"(\\d{2}-\\d{2}-\\d{4})"
+                },
+                {
+                    "datafieldnameRegex" : "Display and Mounting",
+                    "FinalOutputField":"Display and Mounting",
+                    "dataonlyRegex":"0"
+                },
+                {
+                    "datafieldnameRegex" : "IGST Amount ",
+                    "FinalOutputField":"GST",
+                    "dataonlyRegex":"[0-9,.]+"
+                    
+                },
+                {
+                    "datafieldnameRegex" : "Service Tax",
+                    "FinalOutputField":"Service Tax",
+                    "dataonlyRegex":"0"
+                },
+                {
+                
+                    "datafieldnameRegex" : "Krishi Kalyan Cess",
+                    "FinalOutputField":"Krishi Kalyan Cess",
+                    "dataonlyRegex":"0"
+                },
+                {
+                    
+                    "datafieldnameRegex" : "Swachh Bharat Cess",
+                    "FinalOutputField":"Swatch Bharat Cess",
+                    "dataonlyRegex":"0"
+                },
+                {
+                    
+                    "datafieldnameRegex" : "Other Charges",
+                    "FinalOutputField":"Other Charges",
+                    "dataonlyRegex":"0"
+                },
+				{
+					"datafieldnameRegex" : "RO Number: ",
+                    "FinalOutputField":"RO Number",
+                    "dataonlyRegex":"\\w+/[0-9-]+/\\w+/\\w+-\\d+"
+				
+				}
+
+
+            
+
+            ],
+            "qrdata":[
+                {
+                    "visualname" : "Total Invoice Value",
+                    "qrname" : "TotInvVal"
+                },
+                {
+                    "visualname" : "Irn Number",
+                    "qrname" : "Irn"
+                },
+                {
+                    "visualname" : "Seller GST Number",
+                    "qrname" : "SellerGstin"
+                },
+                {
+                    "visualname" : "Buyer GST Number",
+                    "qrname" : "BuyerGstin"
+                },
+                {
+                    "visualname":"QR DOC Number",
+                    "qrname":"DocNo"
+                },
+                {
+                    "visualname":"QR DOC Date",
+                    "qrname":"DocDt"
+
+                }
 
             ]
             
         }
+		
     ],
 
     "INTRUCTIONS AND IMPORTANT NOTES":[{

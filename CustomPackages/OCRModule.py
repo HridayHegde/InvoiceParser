@@ -17,9 +17,16 @@ from PIL import Image
 import time
 from copy import deepcopy
 
+
+import cv2
+
+import pyzbar.pyzbar as pyzbar
+
+from unidecode import unidecode
+
 from CustomPackages import DatabaseInteraction as DI
 #IMAGE GENERATION VARIABLES
-DPI = 400
+DPI = 500
 OUTPUT_FOLDER = None
 FIRST_PAGE = None
 LAST_PAGE = None
@@ -28,6 +35,9 @@ THREAD_COUNT = 1
 USERPWD = None
 USE_CROPBOX = False
 STRICT = False
+
+
+
 
 FileSpecificlocation = "./ConvertedInvoices/"
 
@@ -65,6 +75,7 @@ def GenerateOCR(filepath):
     for x in range(1,index):
         text += "\n" + pytesseract.image_to_string(Image.open(destinationpath+'temp/images/page_'+str(x)+'.jpg'))
     with open(destinationpath+'temp/'+"pytesseractextract.txt","w+") as x:
+        text = unidecode(text)
         x.write(text)
     return text
 
@@ -80,6 +91,7 @@ def GenerateOCRTemplate(file):
     for x in range(1,index):
         text += "\n" + pytesseract.image_to_string(Image.open(destinationpath+'temp/images/page_'+str(x)+'.jpg'))
     with open(destinationpath+Path(file).stem+".txt","w+") as x:
+        text = unidecode(text)
         x.write(text)
     try:
         shutil.rmtree(destinationpath+'temp')
@@ -106,7 +118,10 @@ def ParseOCR(datetime,filepath,text,barcodedata = {},reqfieldsfile = "requiredFi
                 for y in x['qrdata']:
                     if y:
                         fieldnames.append(y["visualname"])
-
+	
+    print("FieldNamesAre : : : :: :  : : :: ")
+    print(fieldnames)
+	
     #region CSV Setup
     #fileexists = os.path.isfile("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
     #csv_file = open("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
@@ -192,13 +207,28 @@ def ParseOCR_QRcode(file):
     for image in pil_images:
         image.save(temploc+"qrimages/page_" + str(index) + ".jpg")
         index += 1
-    for i in range(1,index):
-        reader = zxing.BarCodeReader()
-        if os.path.isfile(temploc+"qrimages/page_" + str(index) + ".jpg"):
-            barcode = reader.decode(temploc+"qrimages/page_" + str(index) + ".jpg")
-            if barcode:
-                barcodeexists = True
-                barcode_data = barcode.raw
+    for filename in os.listdir(temploc+"qrimages/"):
+        image1 = cv2.imread(os.path.join(temploc+"qrimages/",filename))
+        decodedobjects = pyzbar.decode(image1)
+        if decodedobjects:
+            print("YES")
+            barcode_data = decodedobjects[0].data
+            barcodeexists = True
+            print(":::::::::::::::::::::::::::BARECODE DATA :::::::::::::::::::::::::::")
+            print(barcode_data)
+            print(":::::::::::::::::::::::::::BARECODE DATA END:::::::::::::::::::::::::::")
+	
+	#for i in range(1,index):
+    #    reader = zxing.BarCodeReader()
+    #    if os.path.isfile(temploc+"qrimages/page_" + str(index) + ".jpg"):
+    #        image1 = cv2.imread(emploc+"qrimages/page_" + str(index) + ".jpg")
+            
+                
+            #barcode = reader.decode(temploc+"qrimages/page_" + str(index) + ".jpg")
+            #if barcode:
+            #    barcodeexists = True
+            #    barcode_data = barcode.raw
+    
     if barcodeexists:
         return barcode_data
     else:

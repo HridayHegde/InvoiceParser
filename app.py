@@ -1,5 +1,7 @@
 import os
 
+from waitress import serve
+
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory,jsonify
 from werkzeug.utils import secure_filename
 from threading import Thread
@@ -49,9 +51,9 @@ def index():
     except OSError as e:
         print(e)
     try:
-        shutil.rmtree("ConvertedInvoices")
+	    shutil.rmtree("ConvertedInvoices")
     except OSError as e:
-        print(e)
+	    print(e)
     try:
         os.mkdir("ConvertedInvoices")
     except OSError as e:
@@ -210,11 +212,5 @@ def templategen():
 
 
 if __name__ == '__main__':
-    app.run(
-        #host="127.0.0.1",
-        #port=int("80"),
-        #debug=True
-        threaded=True,
-        port=5000,
-        debug=False
-    )
+    app.secret_key = os.urandom(12)
+    serve(app,host='0.0.0.0',port=50541)

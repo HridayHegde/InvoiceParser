@@ -118,7 +118,11 @@ def parseReqDataTabula(datetime,filepath,pathtocsv,barcodedata,dataframe,reqfiel
                 for y in x['qrdata']:
                     if y:
                         fieldnames.append(y["visualname"])
-    #fieldnames.append('Irn Number')
+    
+    print("FieldNamesAre : : : :: :  : : :: ")
+    print(fieldnames)
+	
+	#fieldnames.append('Irn Number')
     #region CSV Setup
     #fileexists = os.path.isfile("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv")
     #csv_file = open("./ConvertedInvoices/"+Path(filepath).stem+"/"+Path(filepath).stem+"_RequiredFiledsOnly.csv",mode='a')
@@ -243,6 +247,7 @@ def parseReqDataTabula(datetime,filepath,pathtocsv,barcodedata,dataframe,reqfiel
 
     print(writedict)
     if not not writedict  :
+        print("Commiting to DB")
         DI.commitToDB(writedict)
         writer.writerow(writedict)
     else:

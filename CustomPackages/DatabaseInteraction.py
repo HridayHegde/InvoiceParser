@@ -4,6 +4,7 @@ from datetime import datetime
 
 
 def commitToDB(dict):
+    print("WE ARE HERE")
     """
     Insert a row to the billing_headers table
     :param billing_date:
@@ -80,10 +81,14 @@ def commitToDB(dict):
     except:
         print("DBINPUTERROR")
         qrdocdate = ""
-    
+    try:ronumber = dict["RO Number"]
+    except:
+        print("DBINPUTERROR")
+        pdfname = ""
+    creationdate = datetime.now()
     # construct an insert statement that add a new row to the billing_headers table
-    sql = ('insert into M_VENDOR_PDF_PARSING(PDFNAME, CLIENTNAME, DOCNO, GRANDTOTAL,DOCDATE,DISPLAYANDMOUNTING,GST,SERVICETAX,KRISHKALYANCESS,SWATCHBHARATCESS,OTHERCHARGES,IRNNO,TOTINVVAL,SELIGSTN,BUYGSTN,QRDOCNUM,QRDOCDATE) '
-        'values(:pdfname,:clientname,:docno,:grandtotal,:docdate,:dispandmount,:gst,:servicetax,:krishkalyan,:swatchbharat,:othercharges,:irnno,:totalinval,:selgstn,:buygstn,:qrdocnum,:qrdocdate)')
+    sql = ('insert into M_VENDOR_PDF_PARSING(PDFNAME, CLIENTNAME, DOCNO, GRANDTOTAL,DOCDATE,DISPLAYANDMOUNTING,GST,SERVICETAX,KRISHKALYANCESS,SWATCHBHARATCESS,OTHERCHARGES,IRNNO,TOTINVVAL,SELLGSTN,BUYGSTN,QRDOCNUM,QRDOCDATE,CREATED_DATE,RO_NO) '
+        'values(:pdfname,:clientname,:docno,:grandtotal,:docdate,:dispandmount,:gst,:servicetax,:krishkalyan,:swatchbharat,:othercharges,:irnno,:totalinval,:selgstn,:buygstn,:qrdocnum,:qrdocdate,:creationdate,:ronumber)')
 
     try:
         # establish a new connection
@@ -94,7 +99,7 @@ def commitToDB(dict):
             # create a cursor
             with connection.cursor() as cursor:
                 # execute the insert statement
-                cursor.execute(sql, [pdfname,clientname,docno,grandtotal,docdate,dispandmount,gst,servicetax,krishkalyan,swatchbharat,othercharges,irnno,totalinval,selgstn,buygstn,qrdocnum,qrdocdate])
+                cursor.execute(sql, [pdfname,clientname,docno,grandtotal,docdate,dispandmount,gst,servicetax,krishkalyan,swatchbharat,othercharges,irnno,totalinval,selgstn,buygstn,qrdocnum,qrdocdate,creationdate,ronumber])
                 # commit work
                 connection.commit()
     except cx_Oracle.Error as error:
